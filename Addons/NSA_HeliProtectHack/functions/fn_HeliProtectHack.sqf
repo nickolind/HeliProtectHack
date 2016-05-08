@@ -1,12 +1,8 @@
 /*
 	To activate - in init.sqf enter:
 		
-		NSA_protectHelis = true;
+		[] call NSA_fnc_HeliProtectHack;
 */
-
-if (isNil {NSA_protectHelis}) exitWith {};
-if (typeName NSA_protectHelis != "BOOL") exitWith {};
-if !(NSA_protectHelis) exitWith {};
 
 
 NSA_hph_heliProtectHack = {
@@ -25,6 +21,8 @@ NSA_hph_heliProtectHack = {
 		
 		_cHeli = _this select 0;
 		while {local _cHeli} do {
+			
+			// if ( acos ((vectorUp _cHeli) vectorDotProduct ([0,0,1]) ) ) then {};
 			
 			if ( 
 				( (getPosATL _cHeli select 2) > 10 ) 
@@ -47,7 +45,6 @@ NSA_hph_heliProtectHack = {
 		};
 	};
 };
-
 
 {
 	if ( (_x isKindOf "Helicopter") && (_x getVariable ["NSA_heliProtect", true]) ) then {
