@@ -20,10 +20,7 @@ class CfgFunctions
 		class HeliProtectHack
 		{
 			file = "NSA_HeliProtectHack\functions";
-			class HeliProtectHack
-			{
-				postInit = 1;
-			};
+			class HeliProtectHack;
 		};
 	};
 };
