@@ -2,6 +2,12 @@
 	To activate - in init.sqf enter:
 		
 		[] call NSA_fnc_HeliProtectHack;
+		
+		
+		
+	To ignore the specific heli, in its initialization:
+		
+		this setVariable ["NSA_heliProtect", false];
 */
 
 
@@ -11,6 +17,9 @@ NSA_hph_heliProtectHack = {
 		if (!isNil { (_this select 0) getVariable "NSA_hph_vehEH" }) then {
 			(_this select 0) removeEventHandler ["local", ((_this select 0) getVariable "NSA_hph_vehEH")];
 			(_this select 0) setVariable ["NSA_hph_vehEH", nil];
+			(_this select 0) allowDamage true;
+			// hint "_cHeli allowDamage true;";
+			// diag_log "NSA_cHeli allowDamage true;";
 		};
 	};
 	
@@ -32,8 +41,10 @@ NSA_hph_heliProtectHack = {
 				( ((serverTime / 60) - ((_cHeli getVariable "NSA_hph_misStartTime") / 60)) > 30 )
 			
 			) exitWith {
-				_cHeli allowDamage true;
 				_cHeli setVariable ["NSA_heliProtect", false, true];
+				_cHeli allowDamage true;
+				// hint "_cHeli allowDamage true;";
+				// diag_log "NSA_cHeli allowDamage true;";
 				
 				if ( (!isNil {(_cHeli getVariable "NSA_hph_vehEH")}) ) then {
 					_cHeli removeEventHandler ["local", (_cHeli getVariable "NSA_hph_vehEH")];
